@@ -1,0 +1,116 @@
+:root {
+  color-scheme: dark;
+  --bg: #10130f;
+  --panel: #181d17;
+  --panel-2: #20261e;
+  --line: #31392c;
+  --text: #edf3e6;
+  --muted: #93a08a;
+  --accent: #d6ff4a;
+  --critical: #ff6b5a;
+  --high: #ffb020;
+  --medium: #e6c35c;
+  --low: #8eb4c9;
+  --ok: #7dffb3;
+  --warn: #d7a4ff;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1000px 400px at 10% -10%, rgba(214, 255, 74, 0.08), transparent 50%),
+    var(--bg);
+}
+
+button, input { font: inherit; }
+
+.app { max-width: 1240px; margin: 0 auto; padding: 28px 20px 48px; }
+
+header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-end;
+  margin-bottom: 22px;
+}
+
+.brand { display: flex; flex-direction: column; gap: 6px; }
+.brand h1 { margin: 0; font-size: 28px; letter-spacing: -0.04em; }
+.brand p { margin: 0; color: var(--muted); max-width: 640px; }
+.kicker { color: var(--accent); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
+
+.metrics, .resources, .scenarios { display: grid; gap: 10px; }
+.metrics { grid-template-columns: repeat(5, 1fr); margin-bottom: 16px; }
+.metric, .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; }
+.metric { padding: 14px 14px 12px; }
+.metric span { display: block; color: var(--muted); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+.metric strong { display: block; margin-top: 8px; font-size: 28px; letter-spacing: -0.04em; }
+.metric.critical strong { color: var(--critical); }
+.metric.failed strong { color: var(--high); }
+
+.layout { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 12px; }
+.panel { padding: 14px; min-height: 280px; }
+.panel h2 { margin: 0 0 12px; font-size: 15px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; color: var(--muted); font-weight: 600; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
+th, td { padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr { cursor: pointer; }
+tr.selected { background: var(--panel-2); }
+.id { font-family: "SFMono-Regular", ui-monospace, monospace; font-size: 12px; }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--line);
+}
+.pill.CRITICAL { color: var(--critical); }
+.pill.HIGH { color: var(--high); }
+.pill.MEDIUM { color: var(--medium); }
+.pill.LOW { color: var(--low); }
+.pill.RESOLVED { color: var(--ok); }
+.pill.FAILED, .pill.REQUIRES_ATTENTION { color: var(--critical); }
+.pill.REQUIRES_APPROVAL { color: var(--warn); }
+
+.timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.timeline li { display: grid; grid-template-columns: 92px 1fr; gap: 10px; }
+.timeline time { color: var(--muted); font-family: "SFMono-Regular", ui-monospace, monospace; font-size: 12px; }
+.detail-meta { color: var(--muted); font-size: 13px; display: grid; gap: 4px; margin-bottom: 14px; }
+.error { color: var(--critical); }
+
+.scenarios { grid-template-columns: repeat(3, 1fr); margin-top: 12px; }
+.scenarios button, .resources article {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--text);
+  text-align: left;
+  padding: 10px 12px;
+}
+.scenarios button { cursor: pointer; }
+.scenarios button:hover, tr:hover { border-color: var(--accent); }
+.scenarios button small, .resources article small { display: block; color: var(--muted); margin-top: 4px; }
+.resources { grid-template-columns: repeat(4, 1fr); margin-top: 12px; }
+.banner {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #2a2018;
+  color: #ffd7a8;
+}
+.notes { color: var(--muted); font-size: 13px; min-height: 1.2em; }
+
+@media (max-width: 980px) {
+  .metrics, .layout, .resources, .scenarios { grid-template-columns: 1fr; }
+  header { flex-direction: column; align-items: flex-start; }
+}
